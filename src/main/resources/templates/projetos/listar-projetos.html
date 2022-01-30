@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Spring Boot - Projetos</title>
+
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet">
+    <link th:href="@{/css/sidebars.css}" rel="stylesheet">
+
+</head>
+<body>
+<main>
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4">Spring Boot</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li>
+                <a href="#" class="nav-link active text-white">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                    Projetos
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                    Pessoas
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img th:src="@{/images/user.jpg}" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>Kelver Arruda</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" href="#">Novo Projeto...</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Sair</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="b-example-divider"></div>
+    <div class="container-fluid">
+
+        <!-- Main row -->
+        <div class="row mx-4 mt-5">
+            <div class="col-11">
+                <div class="card card-outline card-info">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <a th:href="@{/projetos/cadastrar}" class="btn btn-primary">Cadastrar</a>
+                        </div>
+                        <div class="card-tools">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="lista-projetos" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Cód.</th>
+                                <th>Nome</th>
+                                <th>Data Início</th>
+                                <th>Data Fim</th>
+                                <th>Gerente</th>
+                                <th>Orçamento</th>
+                                <th>Risco</th>
+                                <th>Status</th>
+                                <th data-orderable="false">Ações</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Main row -->
+
+    </div>
+    <!-- End Container-fluid -->
+
+</main>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/js/listar-projetos.js}"></script>
+
+</body>
+</html>

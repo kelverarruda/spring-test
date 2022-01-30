@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Spring Boot - Projetos</title>
+
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet">
+    <link th:href="@{/css/sidebars.css}" rel="stylesheet">
+
+</head>
+<body>
+<main>
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4">Spring Boot</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li>
+                <a href="#" class="nav-link active text-white">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                    Projetos
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img th:src="@{/images/user.jpg}" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>Kelver Arruda</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" href="#">Novo Projeto...</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Sair</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="b-example-divider"></div>
+
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row mx-4 mt-5">
+                <div class="col-12">
+                    <div class="card card-outline card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                [[${title}]]
+                            </h3>
+                            <div class="card-tools">
+                            </div>
+                        </div>
+                        <form id="form-projeto" th:action="@{/projetos/salvar}" method="post" th:object="${projeto}">
+                            <div class="card-body">
+                                <input type="hidden" th:field="*{id}">
+                                <div class="row mt-2">
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label>Nome</label>
+                                            <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome') ? 'is-invalid' : ''}" th:field="*{nome}">
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" th:text="${#fields.errors('nome')}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label>Data de Início</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" th:classappend="${#fields.hasErrors('data_inicio') ? 'is-invalid' : ''}" th:field="*{data_inicio}">
+                                                <div class="invalid-feedback" th:if="${#fields.hasErrors('data_inicio')}" th:text="${#fields.errors('data_inicio')}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label>Data de Previsão</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" th:classappend="${#fields.hasErrors('data_previsao_fim') ? 'is-invalid' : ''}" th:field="*{data_previsao_fim}">
+                                                <div class="invalid-feedback" th:if="${#fields.hasErrors('data_previsao_fim')}" th:text="${#fields.errors('data_previsao_fim')}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label>Data Fim</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" th:classappend="${#fields.hasErrors('data_fim') ? 'is-invalid' : ''}" th:field="*{data_fim}">
+                                                <div class="invalid-feedback" th:if="${#fields.hasErrors('data_fim')}" th:text="${#fields.errors('data_fim')}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Descrição</label>
+                                            <textarea class="form-control" rows="3" th:field="*{decricao}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label>Gerente do Projeto</label>
+                                            <select class="form-select" style="width: 100%;" th:field="*{idgerente}">
+                                                <option value="">Selecionar...</option>
+                                                <option th:each="pes : ${pessoas}" th:value="${pes.id}" th:text="${pes.nome}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Orçamento</label>
+                                            <input type="number" class="form-control" th:field="*{orcamento}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select class="form-select" style="width: 100%;" th:field="*{status}">
+                                                <option value="">Selecionar...</option>
+                                                <option th:each="sta : ${status}" th:value="${sta.descricao}" th:text="${sta.descricao}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label>Risco</label>
+                                            <select class="form-select" style="width: 100%;" th:field="*{risco}">
+                                                <option value="">Selecionar...</option>
+                                                <option th:each="ris : ${riscos}" th:value="${ris.descricao}" th:text="${ris.descricao}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="float-start mb-2">
+                                    <a onclick="window.history.back();" class="btn btn-danger"> <i class="fa fa-ban"></i> Cancelar</a>
+                                </div>
+                                <div class="float-end mb-2">
+                                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Salvar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- End Main row -->
+        </div>
+        <!-- End Container-fluid -->
+
+</main>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/jquery.inputmask.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+<script>
+    $('#data_inicio, #data_previsao_fim, #data_fim').inputmask('dd/mm/yyyy', {'placeholder': ' ', 'removeMaskOnSubmit': true});
+</script>
+
+</body>
+</html>
